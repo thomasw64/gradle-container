@@ -1,6 +1,18 @@
 # gradle-container
 
-A container to run gradle builds
+A container to run gradle build. To run gradle builds use this template:
+```
+FROM localhost/gradle:9.0.0 AS build
+
+RUN set -o errexit ; \
+    rm .gradle ; \
+    git clone https://github.com/HANDLE/PROJECT.git .
+
+RUN set -o errexit ; \
+    ln --symbolic /home/gradle/.gradle .gradle ; \
+    echo "org.gradle.daemon=false" >> .gradle/gradle.properties ; \
+    gradle war ; \
+```
 
 ## Build Instructions
 
