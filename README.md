@@ -2,6 +2,7 @@
 
 A container to run gradle build. To run gradle builds use this template:
 ```
+# Build Image
 FROM localhost/gradle:9.0.0 AS build
 
 RUN set -o errexit ; \
@@ -11,7 +12,16 @@ RUN set -o errexit ; \
 RUN set -o errexit ; \
     ln --symbolic /home/gradle/.gradle .gradle ; \
     echo "org.gradle.daemon=false" >> .gradle/gradle.properties ; \
-    gradle war ; \
+    gradle war ; 
+...
+
+# Runtime Image
+FROM icr.io/appcafe/websphere-liberty:kernel-java17-openj9-ubi-minimal
+
+...
+COPY --chown=1001:0 --from=build /project/build/libs/*.war /config/dropins
+...
+
 ```
 
 ## Build Instructions
