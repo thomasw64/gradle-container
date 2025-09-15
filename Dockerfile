@@ -45,7 +45,8 @@ RUN set -o errexit ; \
 
 VOLUME /home/gradle/.gradle
 
-ADD --chmod=644 $GRADLEURL/$GRADLEZIP /opt
+# ADD --chmod=644 $GRADLEURL/$GRADLEZIP /opt
+ADD $GRADLEURL/$GRADLEZIP /opt
 
 WORKDIR /opt
 
