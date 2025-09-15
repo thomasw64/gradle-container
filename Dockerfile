@@ -22,15 +22,15 @@
 
 FROM icr.io/appcafe/ibm-semeru-runtimes:open-17-jdk-ubi-minimal
 
-ARG GRADLEVERSION=9.0.0 
-ARG GRADLEZIP=gradle-$GRADLEVERSION-bin.zip \
-    GRADLEURL=https://services.gradle.org/distributions
-
 USER root
 
 RUN set -o errexit ; \
     microdnf install -y make findutils unzip which git git-lfs nano ; \
     microdnf clean all ;
+
+ARG GRADLEVERSION=9.0.0 
+ARG GRADLEZIP=gradle-$GRADLEVERSION-bin.zip \
+    GRADLEURL=https://services.gradle.org/distributions
 
 RUN set -o errexit ; \
     groupadd --system --gid 1001 gradle ; \
