@@ -20,7 +20,7 @@
 #    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #    SOFTWARE.
 
-FROM icr.io/appcafe/ibm-semeru-runtimes:open-17-jdk-ubi-minimal
+FROM icr.io/appcafe/ibm-semeru-runtimes:open-21-jdk-ubi-minimal
 
 USER root
 
@@ -28,7 +28,7 @@ RUN set -o errexit ; \
     microdnf install -y make findutils unzip which git git-lfs nano ; \
     microdnf clean all ;
 
-ARG GRADLEVERSION=9.0.0 
+ARG GRADLEVERSION=8.6
 ARG GRADLEZIP=gradle-$GRADLEVERSION-bin.zip \
     GRADLEURL=https://services.gradle.org/distributions
 
